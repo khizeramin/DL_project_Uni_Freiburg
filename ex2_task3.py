@@ -191,33 +191,29 @@ class Network:
 ##################################### Task: 3 Display filters from the first Conv layer######################################
 
 
+
+
+
+# AXES.FLATTEN()[I].IMSHOW(IMAGE)
+    #plt.show()
+       
 if __name__=="__main__":
     nn = Network()
     inputVar = T.tensor4('inputs')
     params = lasagne.layers.get_all_param_values(nn.build_network(inputVar))
-
-    # Filters from the first conv layer
     filters_FC1 = params[0]
-    
-    #image = filters_FC1[0,0]
-    fig = plt.figure()
+
     count = 1
-        
-    for i in range (10):
-        for j in range(3):
-            plt.subplot(3,10,count)
-            plt.imshow(filters_FC1[i,j])
-            count += 1
+    for i in range(10):
+        plt.subplot(1, 10, count)
+        temp = filters_FC1[i]
+        temp_trans = np.abs(temp.transpose())
+        print temp_trans.shape
+        plt.imshow(temp_trans*255)
+        count +=1
 
     plt.show()
-    
-       # AXES.FLATTEN()[I].IMSHOW(IMAGE)
-    #plt.show()
-    
 
+            
 
-    
-  
-    
-    
     
